@@ -1,0 +1,11 @@
+.divContentWrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 35px;
+}
+
+.divInputForm {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 35px;
+}

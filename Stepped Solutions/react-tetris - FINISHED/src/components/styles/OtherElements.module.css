@@ -1,0 +1,74 @@
+.mainTextStyle {
+    color: black;
+    font-family: Impact, Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.descriptionTextStyle {
+    color: black;
+    font-family: Impact, Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.paragraphTextStyle {
+    color: black;
+    font-family: Impact, Arial, Helvetica, sans-serif;
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.inputStyle {
+    width: 30vw;
+    height: 3vh;
+    color: #333;
+    background-color: #d4d4d4;
+    font-size: 0.9rem;
+    border: 3px solid black;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.buttonStyle {
+    box-sizing: border-box;
+    min-height: 10px;
+    width: 200px;
+    border: 3px solid black;
+    border-radius: 20px;
+    color: #d4d4d4;
+    background: #333;
+    font-family: Pixel, Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.buttonStyle:hover {
+    border-color: #d4d4d4;
+}
+
+.buttonStyle:active {
+    transform: translateY(4px);
+}
+
+.tableStyle {
+    text-align: left;
+    font-family: Pixel, Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+    color: black;
+    border: 5px solid black;
+    border-radius: 5px;
+    border-spacing: 0;
+    background-color: #d4d4d4;
+}
+
+.thStyle {
+    width: 100vw;
+    font-size: 18px;
+}

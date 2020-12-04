@@ -13,14 +13,14 @@
     align-items: center;
     font-family: Pixel, Arial, Helvetica, sans-serif;
     font-size: 0.8rem;
-    color: #999999;
+    color: #8a8a8a;
     padding-left: 50px;
     padding-right: 50px;
 }
 
 .navRef {
     text-decoration: none;
-    color: #999999;
+    color: #d4d4d4;
 }
 
 .navRef:hover {
@@ -28,11 +28,11 @@
 }
 
 .logOutButton {
-    height: 25px;
+    height: 30px;
     width: 8vw;
     border-radius: 20px;
     border: none;
-    color: white;
+    color: #d4d4d4;
     background: #333;
     font-family: Pixel, Arial, Helvetica, sans-serif;
     font-size: 1rem;
@@ -41,5 +41,5 @@
 }
 
 .logOutButton:hover {
-    border: 1px solid white;
+    border: 3px solid #d4d4d4;
 }
