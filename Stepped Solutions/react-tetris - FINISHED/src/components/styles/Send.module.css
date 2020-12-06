@@ -9,3 +9,25 @@
     flex-direction: column;
     padding: 10px 35px;
 }
+
+.divMaxAmountAndFeeContainer {
+    display: flex;
+}
+
+.divAmountAndFeeText {
+    display: flex;
+    align-items: center;
+    color: black;
+    font-family: Impact, Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    margin: 0 5px;
+}
+
+.inputFee {
+    margin: 10px;
+    width: 20.25vw;
+}
+
+.divInputPassword {
+    margin: 10px 0px;
+}

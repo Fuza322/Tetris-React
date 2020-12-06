@@ -31,10 +31,32 @@ export function Send() {
                     </tbody>
                 </table>
             </div>
+            <hr/>
             <div className={st.divInputForm}>
                 <div>
-                    <p className={s.paragraphTextStyle}>Select coins you want to spend:</p>
+                    <p className={s.mainTextStyle}>Select coins you want to spend.</p>
+                    <p className={s.paragraphTextStyle}>Address:</p>
                     <input className={s.inputStyle}/>
+                </div>
+                <div className={st.divMaxAmountAndFeeContainer}>
+                    <button className={s.buttonStyle}>Max</button>
+                    <div className={st.divAmountAndFeeText}>
+                        Amount (BTC) : 0.0
+                    </div>
+                </div>
+                <div className={st.divAmountAndFeeText}>
+                    Fee:
+                    <div>
+                        <input className={`${s.inputStyle} ${st.inputFee}`}/>
+                    </div>
+                    <div>
+                        Confirmation Expected In: 0 hours
+                    </div>
+                </div>
+                <div className={st.divInputPassword}>
+                    <p className={s.paragraphTextStyle}>Password:</p>
+                    <input className={s.inputStyle}/>
+                    <button className={s.buttonStyle}>Send Transaсtion</button>
                 </div>
             </div>
         </div>
