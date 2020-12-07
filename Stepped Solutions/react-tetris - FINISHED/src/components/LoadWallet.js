@@ -1,11 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import st from './styles/GenerateLoadWallet.module.css';
 import s from './styles/OtherElements.module.css';
 
 export function LoadWallet(props) {
 
+    const [walletPassword, setWalletPassword] = useState('')
+    const [error, setError] = useState(null)
+
     const onChangeHandlerWalletPassword = (e) => {
-        props.setWalletPassword(e.currentTarget.value)
+        setError(null)
+        setWalletPassword(e.currentTarget.value)
+    }
+
+    const load = () => {
+        if(walletPassword.trim() !== '') {
+            props.loadClickButton()
+        } else {
+            setError('Title is required')
+        }
     }
 
     return (
@@ -25,10 +37,11 @@ export function LoadWallet(props) {
                     />
                 </div>
                 <button
-                    onClick={props.loadClickButton}
+                    onClick={load}
                     className={s.buttonStyle}>
                     Load
                 </button>
+                {error}
             </div>
         </div>
     )

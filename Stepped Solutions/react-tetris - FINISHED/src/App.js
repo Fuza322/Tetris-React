@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
-import v1 from "uuid";
 import Tetris from './components/Tetris';
 import {NavBar} from "./components/NavBar";
 import {GenerateWallet} from "./components/GenerateWallet";
@@ -15,7 +14,7 @@ function App() {
     // -------------------------------------------------------------------------------------
     let [walletName, setWalletName] = useState('')
     let [walletGeneratedName, setWalletGeneratedName] = useState('')
-    let [walletPassword, setWalletPassword] = useState('')
+    let [walletDataPassword, setWalletDataPassword] = useState('')
     let [walletGeneratedPassword, setWalletGeneratedPassword] = useState('')
     let [balanceValue, setBalanceValue] = useState(0)
 
@@ -24,7 +23,7 @@ function App() {
         setWalletGeneratedPassword('pasha molodetz')
     }
 
-    function loadClickButtonClick() {
+    function loadButtonClick() {
         setWalletName(walletName)
         setAuthorized(true)
     }
@@ -57,9 +56,9 @@ function App() {
                 }/>
                 <Route path='/load-wallet' render={() =>
                     <LoadWallet
-                        walletPassword={walletPassword}
-                        setWalletPassword={setWalletPassword}
-                        loadClickButton={loadClickButtonClick}
+                        walletDataPassword={walletDataPassword}
+                        setWalletDataPassword={setWalletDataPassword}
+                        loadClickButton={loadButtonClick}
                     />}
                 />
                 <Route path='/send' render={() => <Send/>}/>
