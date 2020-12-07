@@ -35,8 +35,25 @@ function App() {
     ])
 
     function generateButtonClick() {
-        setWalletGeneratedName('new_wallet_name')
-        setWalletGeneratedPassword('pasha molodetz')
+        const EC = require('elliptic').ec;
+        const ec = new EC('secp256k1');
+        const key = ec.genKeyPair();
+        const input = new TextEncoder('utf-8').encode(key.getPublic().encode('hex'));
+        crypto.subtle.digest('SHA-256', input)
+            .then(function(digest) {
+                let view = new DataView(digest);
+                let hexstr = '';
+                for(let i = 0; i < view.byteLength; i++) {
+                    let b = view.getUint8(i);
+                    hexstr += '0123456789abcdef'[(b & 0xf0) >> 4];
+                    hexstr += '0123456789abcdef'[(b & 0x0f)];
+                }
+                setWalletGeneratedName(hexstr);
+            })
+            .catch(function(err) {
+                console.error(err);
+            });
+        setWalletGeneratedPassword(key.getPrivate().toString('hex'));
     }
 
     function loadButtonClick() {

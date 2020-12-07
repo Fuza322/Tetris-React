@@ -12,9 +12,10 @@ import { useGameStatus } from '../hooks/useGameStatus';
 import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
-import Redirect from "react-router-dom/es/Redirect";
+import Redirect  from "react-router-dom/es/Redirect";
 
 const Tetris = (props) => {
+
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
 
@@ -23,6 +24,13 @@ const Tetris = (props) => {
   const [score, setScore, goal, setGoal, rows, setRows, level, setLevel] = useGameStatus(
     rowsCleared
   );
+/*
+  var xhr = new XMLHttpRequest()
+  xhr.addEventListener('load', () => {
+    setGoal(xhr.responseText);
+  })
+  xhr.open('GET', 'http://localhost:8080/api/goal')
+  xhr.send()*/
 
   const movePlayer = dir => {
     if (!checkCollision(player, stage, { x: dir, y: 0 })) {
@@ -113,7 +121,7 @@ const Tetris = (props) => {
     }
   };
 
-  if (!props.authorized) return <Redirect to={'/generate-wallet'}/>
+  if (props.authorized) return <Redirect to={'/generate-wallet'}/>
   else return (
     <StyledTetrisWrapper
       role="button"
@@ -130,7 +138,7 @@ const Tetris = (props) => {
             <div>
               <Display text={`Score: ${score}`} />
               <Display text={`Goal: ${goal}`} />
-              <Display text={`rows: ${rows}`} />
+              <Display text={`Rows: ${rows}`} />
               <Display text={`Level: ${level}`} />
             </div>
           )}
