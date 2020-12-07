@@ -13,7 +13,7 @@ export function Send() {
                     <thead>
                     <tr>
                         <th className={s.thStyle}>Status</th>
-                        <th className={s.thStyle}>Amount (BTC)</th>
+                        <th className={s.thStyle}>Amount (TFC)</th>
                         <th className={s.thStyle}>Privacy</th>
                     </tr>
                     </thead>
@@ -41,7 +41,7 @@ export function Send() {
                 <div className={st.divMaxAmountAndFeeContainer}>
                     <button className={s.buttonStyle}>Max</button>
                     <div className={st.divAmountAndFeeText}>
-                        Amount (BTC) : 0.0
+                        Amount (TFC) : 0.0
                     </div>
                 </div>
                 <div className={st.divAmountAndFeeText}>
@@ -55,7 +55,7 @@ export function Send() {
                 </div>
                 <div className={st.divInputPassword}>
                     <p className={s.paragraphTextStyle}>Password:</p>
-                    <input className={s.inputStyle}/>
+                    <input type='password' className={s.inputStyle}/>
                     <button className={s.buttonStyle}>Send Transaсtion</button>
                 </div>
             </div>

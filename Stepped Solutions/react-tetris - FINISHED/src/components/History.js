@@ -13,7 +13,7 @@ export function History() {
                     <thead>
                     <tr>
                         <th className={s.thStyle}>Date</th>
-                        <th className={s.thStyle}>Amount (BTC)</th>
+                        <th className={s.thStyle}>Amount (TFC)</th>
                         <th className={s.thStyle}>Transaction ID</th>
                     </tr>
                     </thead>

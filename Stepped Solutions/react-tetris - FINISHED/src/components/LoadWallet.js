@@ -1,8 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import st from './styles/GenerateLoadWallet.module.css';
 import s from './styles/OtherElements.module.css';
 
-export function LoadWallet() {
+export function LoadWallet(props) {
+
+    const [inputPassword, setInputPassword] = useState('')
+    const [error, setError] = useState(null)
+
+    const onChangeHandlerWalletPassword = (e) => {
+        setError(null)
+        setInputPassword(e.currentTarget.value)
+    }
+
+    const load = () => {
+        if(inputPassword.trim() !== '') {
+            props.loadClickButton()
+        } else {
+            setError('Title is required')
+        }
+    }
+
     return (
         <div>
             <div className={`${s.descriptionTextStyle} ${st.divContentWrapper}`}>
@@ -12,14 +29,19 @@ export function LoadWallet() {
             <hr/>
             <div className={st.divInputForm}>
                 <div>
-                    <p className={s.paragraphTextStyle}>Wallet name:</p>
-                    <input className={s.inputStyle}/>
-                </div>
-                <div>
                     <p className={s.paragraphTextStyle}>Enter password:</p>
-                    <input className={s.inputStyle}/>
+                    <input
+                        onChange={onChangeHandlerWalletPassword}
+                        type='password'
+                        className={s.inputStyle}
+                    />
                 </div>
-                <button className={s.buttonStyle}>Load</button>
+                <button
+                    onClick={load}
+                    className={s.buttonStyle}>
+                    Load
+                </button>
+                {error}
             </div>
         </div>
     )
