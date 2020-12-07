@@ -17,7 +17,7 @@ export function LoadWallet() {
                 </div>
                 <div>
                     <p className={s.paragraphTextStyle}>Enter password:</p>
-                    <input className={s.inputStyle}/>
+                    <input type='password' className={s.inputStyle}/>
                 </div>
                 <button className={s.buttonStyle}>Load</button>
             </div>

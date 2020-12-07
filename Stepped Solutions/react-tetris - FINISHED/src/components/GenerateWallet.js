@@ -19,7 +19,7 @@ export function GenerateWallet() {
                 </div>
                 <div>
                     <p className={s.paragraphTextStyle}>Choose password:</p>
-                    <input className={s.inputStyle}/>
+                    <input type='password' className={s.inputStyle}/>
                 </div>
                 <button className={s.buttonStyle}>Generate</button>
             </div>
