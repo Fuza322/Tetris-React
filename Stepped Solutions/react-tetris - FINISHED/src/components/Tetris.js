@@ -12,6 +12,7 @@ import { useGameStatus } from '../hooks/useGameStatus';
 import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
+import Redirect from "react-router-dom/es/Redirect";
 
 const Tetris = (props) => {
   const [dropTime, setDropTime] = useState(null);
@@ -112,7 +113,8 @@ const Tetris = (props) => {
     }
   };
 
-  return (
+  if (!props.authorized) return <Redirect to={'/generate-wallet'}/>
+  else return (
     <StyledTetrisWrapper
       role="button"
       tabIndex="0"

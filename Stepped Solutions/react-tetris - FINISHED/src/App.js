@@ -18,6 +18,22 @@ function App() {
     let [walletGeneratedPassword, setWalletGeneratedPassword] = useState('')
     let [balanceValue, setBalanceValue] = useState(0)
 
+    let [histoty, setHistory] = useState([
+        {sender: 'test1', amount: 'test2', recievier: 'test3', status: 'test4'},
+        {sender: 'test1', amount: 'test2', recievier: 'test3', status: 'test4'},
+        {sender: 'test1', amount: 'test2', recievier: 'test3', status: 'test4'},
+        {sender: 'test1', amount: 'test2', recievier: 'test3', status: 'test4'},
+        {sender: 'test1', amount: 'test2', recievier: 'test3', status: 'test4'}
+    ])
+
+    let [send, setSend] = useState([
+        {recievier: 'test1', amount: 'test2', status: 'test3'},
+        {recievier: 'test1', amount: 'test2', status: 'test3'},
+        {recievier: 'test1', amount: 'test2', status: 'test3'},
+        {recievier: 'test1', amount: 'test2', status: 'test3'},
+        {recievier: 'test1', amount: 'test2', status: 'test3'}
+    ])
+
     function generateButtonClick() {
         setWalletGeneratedName('new_wallet_name')
         setWalletGeneratedPassword('pasha molodetz')
@@ -60,6 +76,8 @@ function App() {
                         walletDataPassword={walletPassword}
                         setWalletDataPassword={setWalletPassword}
                         loadClickButton={loadButtonClick}
+                        authorized={authorized}
+                        setAuthorized={setAuthorized}
                     />}
                 />
                 <Route path='/send' render={() => <Send/>}/>

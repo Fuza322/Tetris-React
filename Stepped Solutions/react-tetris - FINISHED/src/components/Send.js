@@ -12,9 +12,9 @@ export function Send() {
                 <table border={3} className={s.tableStyle}>
                     <thead>
                     <tr>
-                        <th className={s.thStyle}>Status</th>
+                        <th className={s.thStyle}>Recievier</th>
                         <th className={s.thStyle}>Amount (TFC)</th>
-                        <th className={s.thStyle}>Privacy</th>
+                        <th className={s.thStyle}>Status</th>
                     </tr>
                     </thead>
                     <tbody>
