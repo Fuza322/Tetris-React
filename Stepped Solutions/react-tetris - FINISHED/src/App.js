@@ -10,7 +10,7 @@ import {History} from "./components/History";
 
 
 function App() {
-    const [authorized, setAuthorized] = useState(true)
+    const [authorized, setAuthorized] = useState(false)
     const [goalValue, setGoalValue] = useState(0)
     // -------------------------------------------------------------------------------------
     let [walletName, setWalletName] = useState('')
@@ -19,7 +19,8 @@ function App() {
     let [balanceValue, setBalanceValue] = useState(0)
 
     function loadClickButton() {
-        
+        setWalletHeaderName(walletName)
+        setAuthorized(true)
     }
 
     return (
