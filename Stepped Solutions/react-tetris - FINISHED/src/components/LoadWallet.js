@@ -4,10 +4,6 @@ import s from './styles/OtherElements.module.css';
 
 export function LoadWallet(props) {
 
-    const onChangeHandlerWalletName = (e) => {
-        props.setWalletName(e.currentTarget.value)
-    }
-
     const onChangeHandlerWalletPassword = (e) => {
         props.setWalletPassword(e.currentTarget.value)
     }
@@ -21,13 +17,6 @@ export function LoadWallet(props) {
             <hr/>
             <div className={st.divInputForm}>
                 <div>
-                    <p className={s.paragraphTextStyle}>Wallet name:</p>
-                    <input
-                        onChange={onChangeHandlerWalletName}
-                        className={s.inputStyle}
-                    />
-                </div>
-                <div>
                     <p className={s.paragraphTextStyle}>Enter password:</p>
                     <input
                         onChange={onChangeHandlerWalletPassword}
@@ -37,8 +26,9 @@ export function LoadWallet(props) {
                 </div>
                 <button
                     onClick={props.loadClickButton}
-                    className={s.buttonStyle}
-                >Load</button>
+                    className={s.buttonStyle}>
+                    Load
+                </button>
             </div>
         </div>
     )

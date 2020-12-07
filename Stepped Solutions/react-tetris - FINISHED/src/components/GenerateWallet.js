@@ -2,7 +2,7 @@ import React from 'react';
 import st from './styles/GenerateLoadWallet.module.css';
 import s from './styles/OtherElements.module.css';
 
-export function GenerateWallet() {
+export function GenerateWallet(props) {
     return (
         <div>
             <div className={`${s.descriptionTextStyle} ${st.divContentWrapper}`}>
@@ -14,14 +14,16 @@ export function GenerateWallet() {
             <hr/>
             <div className={st.divInputForm}>
                 <div>
-                    <p className={s.paragraphTextStyle}>Wallet name:</p>
-                    <input className={s.inputStyle}/>
+                    <p className={s.paragraphTextStyle}>Wallet name: {props.walletGeneratedName}</p>
                 </div>
                 <div>
-                    <p className={s.paragraphTextStyle}>Choose password:</p>
-                    <input type='password' className={s.inputStyle}/>
+                    <p className={s.paragraphTextStyle}>Choose password: {props.walletGeneratedPassword}</p>
                 </div>
-                <button className={s.buttonStyle}>Generate</button>
+                <button
+                    onClick={props.generateButtonClick}
+                    className={s.buttonStyle}>
+                    Generate
+                </button>
             </div>
         </div>
     )

@@ -7,7 +7,7 @@ export function NavBar(props) {
         <div className={s.divNavContainer}>
             {props.authorized ?
                 <div className={s.divNavElement}>
-                    {props.walletHeaderName}
+                    {props.walletName}
                 </div> : ''
             }
             {props.authorized ?
@@ -53,7 +53,7 @@ export function NavBar(props) {
             {props.authorized ?
                 <div className={s.divNavElement}>
                     <button
-                        onClick={ () => props.setAuthorized(false)}
+                        onClick={props.logOutButtonClick}
                         className={s.logOutButton}>
                         LogOut
                     </button>

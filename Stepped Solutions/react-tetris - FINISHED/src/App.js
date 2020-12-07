@@ -14,36 +14,52 @@ function App() {
     const [goalValue, setGoalValue] = useState(0)
     // -------------------------------------------------------------------------------------
     let [walletName, setWalletName] = useState('')
-    let [walletHeaderName, setWalletHeaderName] = useState('Wallet_Header_Name')
+    let [walletGeneratedName, setWalletGeneratedName] = useState('')
     let [walletPassword, setWalletPassword] = useState('')
+    let [walletGeneratedPassword, setWalletGeneratedPassword] = useState('')
     let [balanceValue, setBalanceValue] = useState(0)
 
-    function loadClickButton() {
-        setWalletHeaderName(walletName)
+    function generateButtonClick() {
+        setWalletGeneratedName('new_wallet_name')
+        setWalletGeneratedPassword('pasha molodetz')
+    }
+
+    function loadClickButtonClick() {
+        setWalletName(walletName)
         setAuthorized(true)
+    }
+
+    function logOutButtonClick() {
+        setWalletName('')
+        setAuthorized(false)
     }
 
     return (
         <BrowserRouter>
             <div className="App">
                 <NavBar
-                    walletHeaderName={walletHeaderName}
+                    walletName={setWalletName}
                     balance={balanceValue}
                     authorized={authorized}
                     setAuthorized={setAuthorized}
+                    logOutButtonClick={logOutButtonClick}
                 />
                 <Route path='/tetris' render={() =>
                     <Tetris goalValue={goalValue}
                     />
                 }/>
-                <Route path='/generate-wallet' render={() => <GenerateWallet/>}/>
+                <Route path='/generate-wallet' render={() =>
+                    <GenerateWallet
+                        walletGeneratedName={walletGeneratedName}
+                        walletGeneratedPassword={walletGeneratedPassword}
+                        generateButtonClick={generateButtonClick}
+                    />
+                }/>
                 <Route path='/load-wallet' render={() =>
                     <LoadWallet
-                        walletName={walletName}
-                        setWalletName={setWalletName}
                         walletPassword={walletPassword}
                         setWalletPassword={setWalletPassword}
-                        loadClickButton={loadClickButton}
+                        loadClickButton={loadClickButtonClick}
                     />}
                 />
                 <Route path='/send' render={() => <Send/>}/>
