@@ -7,7 +7,7 @@ export function NavBar(props) {
         <div className={s.divNavContainer}>
             {props.authorized ?
                 <div className={s.divNavElement}>
-                    Wallet_Name
+                    {props.walletName}
                 </div> : ''
             }
             {props.authorized ?

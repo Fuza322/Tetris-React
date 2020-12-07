@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { createStage, checkCollision } from '../gameHelpers';
 import { StyledTetrisWrapper, StyledTetris } from './styles/StyledTetris';
 
@@ -14,7 +13,7 @@ import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
 
-const Tetris = () => {
+const Tetris = (props) => {
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
 
@@ -119,7 +118,7 @@ const Tetris = () => {
           ) : (
             <div>
               <Display text={`Score: ${score}`} />
-              <Display text={`Goal: ${score}`} />
+              <Display text={`Goal: ${props.goalValue}`} />
               <Display text={`rows: ${rows}`} />
               <Display text={`Level: ${level}`} />
             </div>
