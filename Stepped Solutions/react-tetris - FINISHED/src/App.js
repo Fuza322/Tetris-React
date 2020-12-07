@@ -13,6 +13,7 @@ function App() {
     const [balanceValue, setBalanceValue] = useState(0)
     const [authorized, setAuthorized] = useState(true)
 
+
     return (
         <BrowserRouter>
             <div className="App">
