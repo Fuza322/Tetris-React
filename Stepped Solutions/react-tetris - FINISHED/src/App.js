@@ -14,7 +14,7 @@ function App() {
     // -------------------------------------------------------------------------------------
     let [walletName, setWalletName] = useState('')
     let [walletGeneratedName, setWalletGeneratedName] = useState('')
-    let [walletDataPassword, setWalletDataPassword] = useState('')
+    let [walletPassword, setWalletPassword] = useState('')
     let [walletGeneratedPassword, setWalletGeneratedPassword] = useState('')
     let [balanceValue, setBalanceValue] = useState(0)
 
@@ -56,8 +56,8 @@ function App() {
                 }/>
                 <Route path='/load-wallet' render={() =>
                     <LoadWallet
-                        walletDataPassword={walletDataPassword}
-                        setWalletDataPassword={setWalletDataPassword}
+                        walletDataPassword={walletPassword}
+                        setWalletDataPassword={setWalletPassword}
                         loadClickButton={loadButtonClick}
                     />}
                 />

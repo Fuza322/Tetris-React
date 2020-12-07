@@ -4,16 +4,16 @@ import s from './styles/OtherElements.module.css';
 
 export function LoadWallet(props) {
 
-    const [walletPassword, setWalletPassword] = useState('')
+    const [inputPassword, setInputPassword] = useState('')
     const [error, setError] = useState(null)
 
     const onChangeHandlerWalletPassword = (e) => {
         setError(null)
-        setWalletPassword(e.currentTarget.value)
+        setInputPassword(e.currentTarget.value)
     }
 
     const load = () => {
-        if(walletPassword.trim() !== '') {
+        if(inputPassword.trim() !== '') {
             props.loadClickButton()
         } else {
             setError('Title is required')
