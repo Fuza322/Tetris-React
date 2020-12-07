@@ -10,21 +10,23 @@ import {History} from "./components/History";
 
 
 function App() {
-    // authorized - переменная, вошли ли в кошелёк? (boolean), setAuthorized - функция для установки нового значения
     const [authorized, setAuthorized] = useState(true)
-    // goalValue - переменная значения гола, setGoal - функция для установки нового значения
     const [goalValue, setGoalValue] = useState(0)
     // -------------------------------------------------------------------------------------
-    // walletName - переменная, хранящая имя текущего кошелька, setWalletName - функция для установки нового значения
-    let [walletName, setWalletName] = useState('Wallet_Name')
-    // balanceValue - переменная текущего баланса, setBalanceValue - функция для установки нового значения
+    let [walletName, setWalletName] = useState('')
+    let [walletHeaderName, setWalletHeaderName] = useState('Wallet_Header_Name')
+    let [walletPassword, setWalletPassword] = useState('')
     let [balanceValue, setBalanceValue] = useState(0)
+
+    function loadClickButton() {
+        
+    }
 
     return (
         <BrowserRouter>
             <div className="App">
                 <NavBar
-                    walletName={walletName}
+                    walletHeaderName={walletHeaderName}
                     balance={balanceValue}
                     authorized={authorized}
                     setAuthorized={setAuthorized}
@@ -34,7 +36,15 @@ function App() {
                     />
                 }/>
                 <Route path='/generate-wallet' render={() => <GenerateWallet/>}/>
-                <Route path='/load-wallet' render={() => <LoadWallet/>}/>
+                <Route path='/load-wallet' render={() =>
+                    <LoadWallet
+                        walletName={walletName}
+                        setWalletName={setWalletName}
+                        walletPassword={walletPassword}
+                        setWalletPassword={setWalletPassword}
+                        loadClickButton={loadClickButton}
+                    />}
+                />
                 <Route path='/send' render={() => <Send/>}/>
                 <Route path='/history' render={() => <History/>}/>
             </div>

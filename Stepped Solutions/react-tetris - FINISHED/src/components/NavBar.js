@@ -7,42 +7,42 @@ export function NavBar(props) {
         <div className={s.divNavContainer}>
             {props.authorized ?
                 <div className={s.divNavElement}>
-                    {props.walletName}
+                    {props.walletHeaderName}
                 </div> : ''
             }
             {props.authorized ?
                 <div className={s.divNavElement}>
-                    <a href='/tetris' className={s.navRef}>
+                    <NavLink to='/tetris' className={s.navRef}>
                         Tetris
-                    </a>
+                    </NavLink>
                 </div> : ''
             }
             {props.authorized ? '' :
                 <div className={s.divNavElement}>
-                    <a href="generate-wallet" className={s.navRef}>
+                    <NavLink to="generate-wallet" className={s.navRef}>
                         Generate Wallet
-                    </a>
+                    </NavLink>
                 </div>
             }
             {props.authorized ? '' :
                 <div className={s.divNavElement}>
-                    <a href="load-wallet" className={s.navRef}>
+                    <NavLink to="load-wallet" className={s.navRef}>
                         Load Wallet
-                    </a>
+                    </NavLink>
                 </div>
             }
             {props.authorized ?
                 <div className={s.divNavElement}>
-                    <a href="send" className={s.navRef}>
+                    <NavLink to="send" className={s.navRef}>
                         Send
-                    </a>
+                    </NavLink>
                 </div>: ''
             }
             {props.authorized ?
                 <div className={s.divNavElement}>
-                <a href="history" className={s.navRef}>
+                <NavLink to="history" className={s.navRef}>
                     History
-                </a>
+                </NavLink>
                 </div>: ''
             }
             {props.authorized ?

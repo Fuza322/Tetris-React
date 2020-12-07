@@ -2,7 +2,16 @@ import React from 'react';
 import st from './styles/GenerateLoadWallet.module.css';
 import s from './styles/OtherElements.module.css';
 
-export function LoadWallet() {
+export function LoadWallet(props) {
+
+    const onChangeHandlerWalletName = (e) => {
+        props.setWalletName(e.currentTarget.value)
+    }
+
+    const onChangeHandlerWalletPassword = (e) => {
+        props.setWalletPassword(e.currentTarget.value)
+    }
+
     return (
         <div>
             <div className={`${s.descriptionTextStyle} ${st.divContentWrapper}`}>
@@ -13,13 +22,23 @@ export function LoadWallet() {
             <div className={st.divInputForm}>
                 <div>
                     <p className={s.paragraphTextStyle}>Wallet name:</p>
-                    <input className={s.inputStyle}/>
+                    <input
+                        onChange={onChangeHandlerWalletName}
+                        className={s.inputStyle}
+                    />
                 </div>
                 <div>
                     <p className={s.paragraphTextStyle}>Enter password:</p>
-                    <input type='password' className={s.inputStyle}/>
+                    <input
+                        onChange={onChangeHandlerWalletPassword}
+                        type='password'
+                        className={s.inputStyle}
+                    />
                 </div>
-                <button className={s.buttonStyle}>Load</button>
+                <button
+                    onClick={props.loadClickButton}
+                    className={s.buttonStyle}
+                >Load</button>
             </div>
         </div>
     )
