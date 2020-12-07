@@ -38,6 +38,7 @@ function App() {
         const EC = require('elliptic').ec;
         const ec = new EC('secp256k1');
         const key = ec.genKeyPair();
+        console.log(key.getPublic());
         const input = new TextEncoder('utf-8').encode(key.getPublic().encode('hex'));
         crypto.subtle.digest('SHA-256', input)
             .then(function(digest) {
@@ -71,7 +72,7 @@ function App() {
         <BrowserRouter>
             <div className="App">
                 <NavBar
-                    walletName={setWalletName}
+                    walletName={walletName}
                     balance={balanceValue}
                     authorized={authorized}
                     setAuthorized={setAuthorized}
@@ -93,6 +94,8 @@ function App() {
                     <LoadWallet
                         walletDataPassword={walletPassword}
                         setWalletDataPassword={setWalletPassword}
+                        setWalletName={setWalletName}
+                        setBalanceValue ={setBalanceValue}
                         loadClickButton={loadButtonClick}
                         authorized={authorized}
                         setAuthorized={setAuthorized}

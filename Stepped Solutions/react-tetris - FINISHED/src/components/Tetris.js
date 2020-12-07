@@ -15,7 +15,6 @@ import StartButton from './StartButton';
 import Redirect  from "react-router-dom/es/Redirect";
 
 const Tetris = (props) => {
-  console.log(props);
 
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
@@ -25,13 +24,8 @@ const Tetris = (props) => {
   const [score, setScore, goal, setGoal, rows, setRows, level, setLevel] = useGameStatus(
     rowsCleared
   );
-/*
-  var xhr = new XMLHttpRequest()
-  xhr.addEventListener('load', () => {
-    setGoal(xhr.responseText);
-  })
-  xhr.open('GET', 'http://localhost:8080/api/goal')
-  xhr.send()*/
+
+
 
   const movePlayer = dir => {
     if (!checkCollision(player, stage, { x: dir, y: 0 })) {
@@ -66,9 +60,12 @@ const Tetris = (props) => {
   };
 
   const downGoal = () => {
-    if (goal > 0) {
-      setGoal(goal - 1);
-    }
+    var xhr = new XMLHttpRequest()
+    xhr.addEventListener('load', () => {
+      setGoal(xhr.responseText);
+    })
+    xhr.open('GET', 'http://localhost:8080/api/goal')
+    xhr.send()
   }
 
   const drop = () => {

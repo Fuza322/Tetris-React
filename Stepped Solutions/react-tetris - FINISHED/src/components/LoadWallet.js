@@ -16,22 +16,43 @@ export function LoadWallet(props) {
 
     const load = () => {
         if(inputPassword.trim() !== '') {
+            const EC = require('elliptic').ec;
+            const ec = new EC('secp256k1');
+            const key = ec.keyFromPrivate(inputPassword.trim(), 'hex');
+            let hexstr = '';
+            console.log(key.getPublic());
+            const input = new TextEncoder('utf-8').encode(key.getPublic().encode('hex'));
+            crypto.subtle.digest('SHA-256', input)
+                .then(function(digest) {
+                    let view = new DataView(digest);
+                    hexstr = '';
+                    for(let i = 0; i < view.byteLength; i++) {
+                        let b = view.getUint8(i);
+                        hexstr += '0123456789abcdef'[(b & 0xf0) >> 4];
+                        hexstr += '0123456789abcdef'[(b & 0x0f)];
+                    }
+                    props.setWalletName(hexstr);
+
+                    var xhr2 = new XMLHttpRequest()
+                    xhr2.addEventListener('load', () => {
+                        props.setBalanceValue(xhr2.responseText);
+                        console.log(xhr2.responseText);
+                    })
+                    let request = 'http://localhost:8080/api/balance?address='+hexstr.toString();
+                    xhr2.open('GET', request);
+                    xhr2.send();
+                })
+                .catch(function(err) {
+                    console.error(err);
+                });
             props.loadClickButton()
+            //props.setWalletName("1");
             props.setAuthorized(true)
         } else {
-            setError('Title is required')
+            setError('Passwor cannot be empty')
         }
     }
 
-    String.prototype.getBytes = function () {
-        var bytes = [];
-        for (var i = 0; i < this.length; ++i) {
-            bytes.push(this.charCodeAt(i));
-        }
-        return bytes;
-    };
-
-    console.log(props);
 
     if (props.authorized) return <Redirect to={'/tetris'}/>
     else return (

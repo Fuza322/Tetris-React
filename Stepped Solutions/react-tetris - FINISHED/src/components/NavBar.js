@@ -7,7 +7,7 @@ export function NavBar(props) {
         <div className={s.divNavContainer}>
             {props.authorized ?
                 <div className={s.divNavElement}>
-                    {props.walletName}
+                    Wallet:{props.walletName}
                 </div> : ''
             }
             {props.authorized ?
@@ -47,7 +47,7 @@ export function NavBar(props) {
             }
             {props.authorized ?
                 <div className={s.divNavElement}>
-                Balance: {props.balance}
+                Balance: {props.balance / 1e9} TFC
             </div>: ''
             }
             {props.authorized ?
