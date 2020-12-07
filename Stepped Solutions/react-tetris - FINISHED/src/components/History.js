@@ -1,8 +1,11 @@
 import React from 'react';
 import s from "./styles/OtherElements.module.css";
 import st from "./styles/History.module.css";
+import Redirect from "react-router-dom/es/Redirect";
 
-export function History() {
+export function History(props) {
+    if (!props.authorized) return <Redirect to={'/generate-wallet'}/>
+    else
     return (
         <div>
             <div className={`${s.descriptionTextStyle} ${st.divContentWrapper}`}>

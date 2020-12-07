@@ -1,8 +1,11 @@
 import React from 'react';
 import st from "./styles/Send.module.css";
 import s from "./styles/OtherElements.module.css";
+import Redirect from "react-router-dom/es/Redirect";
 
-export function Send() {
+export function Send(props) {
+    if (!props.authorized) return <Redirect to={'/generate-wallet'}/>
+    else
     return (
         <div>
             <div className={`${s.descriptionTextStyle} ${st.divContentWrapper}`}>

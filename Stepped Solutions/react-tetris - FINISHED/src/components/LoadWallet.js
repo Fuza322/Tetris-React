@@ -30,21 +30,8 @@ export function LoadWallet(props) {
         }
         return bytes;
     };
-    var m="hello";
-    var EC = require('elliptic').ec;
-    var ec = new EC('secp256k1');
-    var key = ec.genKeyPair();
-    var publicKey = key.getPublic(false);
-    console.log("Message:",m);
-    console.log("\nPrivate key:",key.getPrivate());
-    console.log("\nPublic key:",publicKey);
-    var msgHash=Buffer.from(m, 'utf8');
-    var signature = key.sign(msgHash);
-    console.log("\nSignature:",signature);
-// Export DER encoded signature in Array
-    var derSign = signature.toDER();
-// Verify signature
-    console.log("Signature verified:",key.verify(msgHash, derSign));
+
+    console.log(props);
 
     if (props.authorized) return <Redirect to={'/tetris'}/>
     else return (

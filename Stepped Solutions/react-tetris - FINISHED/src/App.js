@@ -79,6 +79,7 @@ function App() {
                 />
                 <Route path='/tetris' render={() =>
                     <Tetris goalValue={goalValue}
+                            authorized={authorized}
                     />
                 }/>
                 <Route path='/generate-wallet' render={() =>
@@ -97,8 +98,8 @@ function App() {
                         setAuthorized={setAuthorized}
                     />}
                 />
-                <Route path='/send' render={() => <Send/>}/>
-                <Route path='/history' render={() => <History/>}/>
+                <Route path='/send' render={() => <Send authorized={authorized}/>}/>
+                <Route path='/history' render={() => <History authorized={authorized}/>}/>
             </div>
         </BrowserRouter>
     )

@@ -15,6 +15,7 @@ import StartButton from './StartButton';
 import Redirect  from "react-router-dom/es/Redirect";
 
 const Tetris = (props) => {
+  console.log(props);
 
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
@@ -121,7 +122,7 @@ const Tetris = (props) => {
     }
   };
 
-  if (props.authorized) return <Redirect to={'/generate-wallet'}/>
+  if (!props.authorized) return <Redirect to={'/generate-wallet'}/>
   else return (
     <StyledTetrisWrapper
       role="button"
