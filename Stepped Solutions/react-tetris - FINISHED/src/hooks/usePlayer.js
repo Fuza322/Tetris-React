@@ -6,6 +6,7 @@ import { STAGE_WIDTH, checkCollision } from '../gameHelpers';
 export const usePlayer = () => {
   const [player, setPlayer] = useState({
     pos: { x: 0, y: 0 },
+    rot: 0,
     tetromino: TETROMINOS[0].shape,
     collided: false,
   });
@@ -20,7 +21,10 @@ export const usePlayer = () => {
 
   function playerRotate(stage, dir) {
     const clonedPlayer = JSON.parse(JSON.stringify(player));
+    console.log(clonedPlayer);
     clonedPlayer.tetromino = rotate(clonedPlayer.tetromino, dir);
+
+    clonedPlayer.rot = (clonedPlayer.rot + dir + 4) % 4;
 
     const pos = clonedPlayer.pos.x;
     let offset = 1;
@@ -36,6 +40,7 @@ export const usePlayer = () => {
     setPlayer(clonedPlayer);
   }
 
+
   const updatePlayerPos = ({ x, y, collided }) => {
     setPlayer(prev => ({
       ...prev,
@@ -47,6 +52,7 @@ export const usePlayer = () => {
   const resetPlayer = useCallback(() => {
     setPlayer({
       pos: { x: STAGE_WIDTH / 2 - 2, y: 0 },
+      rot : 0,
       tetromino: randomTetromino().shape,
       collided: false,
     });
