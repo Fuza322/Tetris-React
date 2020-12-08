@@ -4,6 +4,15 @@ import st from "./styles/History.module.css";
 import Redirect from "react-router-dom/es/Redirect";
 
 export function History(props) {
+
+    function makeColumns(row) {
+        return <td>{row.sender} {row.amount} {row.recievier} {row.status}</td>
+    }
+
+    let tableTemplate = props.histoty.map((row, i) => {
+        return <tr key={i}>{makeColumns(row)}</tr>
+    })
+
     if (!props.authorized) return <Redirect to={'/generate-wallet'}/>
     else
     return (
@@ -22,16 +31,17 @@ export function History(props) {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>ewew</td>
-                        <td>ewew</td>
-                        <td>ewew</td>
-                    </tr>
-                    <tr>
-                        <td>ewew</td>
-                        <td>ewew</td>
-                        <td>ewew</td>
-                    </tr>
+                    {tableTemplate}
+                    {/*<tr>*/}
+                    {/*    <td>ewew</td>*/}
+                    {/*    <td>ewew</td>*/}
+                    {/*    <td>ewew</td>*/}
+                    {/*</tr>*/}
+                    {/*<tr>*/}
+                    {/*    <td>ewew</td>*/}
+                    {/*    <td>ewew</td>*/}
+                    {/*    <td>ewew</td>*/}
+                    {/*</tr>*/}
                     </tbody>
                 </table>
             </div>

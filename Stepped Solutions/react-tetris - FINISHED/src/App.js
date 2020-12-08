@@ -102,7 +102,12 @@ function App() {
                     />}
                 />
                 <Route path='/send' render={() => <Send authorized={authorized}/>}/>
-                <Route path='/history' render={() => <History authorized={authorized}/>}/>
+                <Route path='/history' render={() =>
+                    <History
+                        authorized={authorized}
+                        histoty={histoty}
+                    />
+                }/>
             </div>
         </BrowserRouter>
     )
