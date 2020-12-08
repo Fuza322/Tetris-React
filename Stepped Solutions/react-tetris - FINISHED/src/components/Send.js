@@ -4,6 +4,15 @@ import s from "./styles/OtherElements.module.css";
 import Redirect from "react-router-dom/es/Redirect";
 
 export function Send(props) {
+
+    function makeColumns(row) {
+        return(<> <td>{row.recievier}</td> <td>{row.amount}</td> <td>{row.status}</td> </>)
+    }
+
+    let tableTemplate = props.send.map((row, i) => {
+        return <tr key={i}>{makeColumns(row)}</tr>
+    })
+
     if (!props.authorized) return <Redirect to={'/generate-wallet'}/>
     else
     return (
@@ -21,16 +30,7 @@ export function Send(props) {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>ewew</td>
-                        <td>ewew</td>
-                        <td>ewew</td>
-                    </tr>
-                    <tr>
-                        <td>ewew</td>
-                        <td>ewew</td>
-                        <td>ewew</td>
-                    </tr>
+                    {tableTemplate}
                     </tbody>
                 </table>
             </div>

@@ -101,7 +101,12 @@ function App() {
                         setAuthorized={setAuthorized}
                     />}
                 />
-                <Route path='/send' render={() => <Send authorized={authorized}/>}/>
+                <Route path='/send' render={() =>
+                    <Send
+                        authorized={authorized}
+                        send={send}
+                    />}
+                />
                 <Route path='/history' render={() =>
                     <History
                         authorized={authorized}
