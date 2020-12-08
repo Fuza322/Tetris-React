@@ -23,6 +23,12 @@ function App() {
 
     let [send, setSend] = useState([])
 
+    let [addressValue, setAddressValue] = useState('')
+    let [amountValue, setAmountValue] = useState('')
+    let [feeValue, setFeeValue] = useState('')
+    let [sendPasswordValue, setSendPasswordValue] = useState('')
+    let [confirmationHours, setConfirmationHours] = useState('{test}')
+
     function generateButtonClick() {
         const EC = require('elliptic').ec;
         const ec = new EC('secp256k1');
@@ -56,6 +62,14 @@ function App() {
         setAuthorized(false)
     }
 
+    const consoleOutput = () => {
+        console.log('------------')
+        console.log(addressValue)
+        console.log(amountValue)
+        console.log(feeValue)
+        console.log(sendPasswordValue)
+    }
+    consoleOutput()
 
     return (
         <BrowserRouter>
@@ -100,6 +114,20 @@ function App() {
                         send={send}
                         setSend={setSend}
                         walletName={walletName}
+                        addressValue={addressValue}
+                        setAddressValue={setAddressValue}
+                        amountValue={amountValue}
+                        setAmountValue={setAmountValue}
+                        feeValue={feeValue}
+                        setFeeValue={setFeeValue}
+                        sendPasswordValue={sendPasswordValue}
+                        setSendPasswordValue={setSendPasswordValue}
+                        confirmationHours={confirmationHours}
+                        setConfirmationHours={setConfirmationHours}
+                        //-----------------------------------------
+                        balanceValue={balanceValue}
+                        setBalanceValue={setBalanceValue}
+
                     />}
                 />
                 <Route path='/history' render={() =>

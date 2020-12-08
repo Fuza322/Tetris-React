@@ -49,7 +49,7 @@ export function LoadWallet(props) {
             //props.setWalletName("1");
             props.setAuthorized(true)
         } else {
-            setError('Passwor cannot be empty')
+            setError('Password cannot be empty')
         }
     }
 
