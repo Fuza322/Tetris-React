@@ -6,7 +6,7 @@ import Redirect from "react-router-dom/es/Redirect";
 export function History(props) {
 
     function makeColumns(row) {
-        return <td>{row.sender} {row.amount} {row.recievier} {row.status}</td>
+        return(<> <td>{row.sender}</td> <td>{row.amount}</td> <td>{row.recievier}</td> <td>{row.status}</td> </>)
     }
 
     let tableTemplate = props.histoty.map((row, i) => {
