@@ -62,15 +62,6 @@ function App() {
         setAuthorized(false)
     }
 
-    const consoleOutput = () => {
-        console.log('------------')
-        console.log(addressValue)
-        console.log(amountValue)
-        console.log(feeValue)
-        console.log(sendPasswordValue)
-    }
-    consoleOutput()
-
     return (
         <BrowserRouter>
             <div className="App">

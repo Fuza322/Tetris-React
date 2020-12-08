@@ -6,28 +6,28 @@ import {useInterval} from "../hooks/useInterval";
 
 export function Send(props) {
 
-    // function httpGet()
-    // {
-    //     console.log("httGet");
-    //     let xmlHttp = new XMLHttpRequest();
-    //     xmlHttp.open( "GET", 'http://localhost:8080/api//transaction/user?address=' + props.walletName, false ); // false for synchronous request
-    //     xmlHttp.send( null );
-    //     let json = JSON.parse(xmlHttp.responseText);
-    //     let result = []
-    //     for(let i = 0; i < json.length; i++) {
-    //         let obj = json[i];
-    //         if (obj.sender === props.walletName)
-    //         result.push({amount: obj.amount, receiver: obj.receiver, status: obj.block==="0"?"Pending":"Included in block "+obj.block});
-    //     }
-    //     console.log(json);
-    //     props.setSend(result);
-    //     console.log("buff!");
-    //     return 0;
-    // }
-    //
-    // useInterval(() => {
-    //     httpGet();
-    // }, 1000);
+     function httpGet()
+     {
+         console.log("httGet");
+         let xmlHttp = new XMLHttpRequest();
+         xmlHttp.open( "GET", 'http://localhost:8080/api//transaction/user?address=' + props.walletName, false ); // false for synchronous request
+         xmlHttp.send( null );
+         let json = JSON.parse(xmlHttp.responseText);
+         let result = []
+         for(let i = 0; i < json.length; i++) {
+             let obj = json[i];
+             if (obj.sender === props.walletName)
+             result.push({amount: obj.amount, receiver: obj.receiver, status: obj.block==="0"?"Pending":"Included in block "+obj.block});
+         }
+         console.log(json);
+         props.setSend(result);
+         console.log("buff!");
+         return 0;
+     }
+
+     useInterval(() => {
+         httpGet();
+     }, 1000);
 
 
     const [error, setError] = useState(null)
