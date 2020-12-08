@@ -27,7 +27,7 @@ function App() {
     let [amountValue, setAmountValue] = useState('')
     let [feeValue, setFeeValue] = useState('')
     let [sendPasswordValue, setSendPasswordValue] = useState('')
-    let [confirmationHours, setConfirmationHours] = useState('{test}')
+    let [confirmationHours, setConfirmationHours] = useState('24')
 
     function generateButtonClick() {
         const EC = require('elliptic').ec;
@@ -90,8 +90,8 @@ function App() {
                 }/>
                 <Route path='/load-wallet' render={() =>
                     <LoadWallet
-                        walletDataPassword={walletPassword}
-                        setWalletDataPassword={setWalletPassword}
+                        walletPassword={walletPassword}
+                        setWalletPassword={setWalletPassword}
                         setWalletName={setWalletName}
                         setBalanceValue ={setBalanceValue}
                         loadClickButton={loadButtonClick}
@@ -118,6 +118,7 @@ function App() {
                         //-----------------------------------------
                         balanceValue={balanceValue}
                         setBalanceValue={setBalanceValue}
+
 
                     />}
                 />

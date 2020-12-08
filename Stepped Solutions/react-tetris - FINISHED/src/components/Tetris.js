@@ -45,6 +45,14 @@ const Tetris = (props) => {
 
   const startGame = () => {
     // Reset everything
+    let xhr2 = new XMLHttpRequest()
+    xhr2.addEventListener('load', () => {
+      props.setBalanceValue(xhr2.responseText);
+      console.log(xhr2.responseText);
+    })
+    let request = 'http://localhost:8080/api/balance?address='+props.walletName;
+    xhr2.open('GET', request);
+    xhr2.send();
     setStage(createStage());
     setDropTime(1000);
     props.setSolve('');
@@ -129,7 +137,7 @@ const Tetris = (props) => {
       // Game over!
       if (player.pos.y < 1) {
         console.log('GAME OVER!!!');
-        if (score <= parseInt(goal))
+        if (score >= parseInt(goal))
           createNewBlock(props.solve);
         console.log(score >= parseInt(goal));
         console.log(parseInt(goal));

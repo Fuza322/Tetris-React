@@ -19,6 +19,7 @@ export function LoadWallet(props) {
             const EC = require('elliptic').ec;
             const ec = new EC('secp256k1');
             const key = ec.keyFromPrivate(inputPassword.trim(), 'hex');
+            props.setWalletPassword(inputPassword.trim());
             let hexstr = '';
             console.log(key.getPublic());
             const input = new TextEncoder('utf-8').encode(key.getPublic().encode('hex'));

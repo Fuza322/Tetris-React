@@ -51,6 +51,9 @@ export function Send(props) {
 
     const onChangeHandlerFee = (e) => {
         setError(null)
+        if (!isNaN(parseInt(e.currentTarget.value, 10))){
+            props.setConfirmationHours((24 / (parseInt(e.currentTarget.value)/100+1)).toFixed(1));
+        }
         setFeeInputValue(e.currentTarget.value)
         // console.log(feeInputValue)
     }
@@ -71,6 +74,45 @@ export function Send(props) {
             // console.log(props.feeValue)
             props.setSendPasswordValue(sendPasswordInputValue)
             // console.log(props.sendPasswordValue)
+
+            const EC = require('elliptic').ec;
+            const ec = new EC('secp256k1');
+            const publicKey = ec.keyFromPrivate(sendPasswordInputValue, 'hex').getPublic().encode('hex');
+
+
+            let json = {sender: props.walletName,
+                receiver: addressInputValue,
+                amount : parseInt(amountInputValue),
+                fee: parseInt(feeInputValue),
+                publicKey: publicKey,
+                signature: "mamoi klyanus"
+            };
+            const input = new TextEncoder('utf-8').encode(JSON.stringify(json));
+            console.log(input);
+            crypto.subtle.digest('SHA-256', input)
+                .then(function(digest) {
+                    let view = new DataView(digest);
+                    let hexstr = '';
+                    for(let i = 0; i < view.byteLength; i++) {
+                        let b = view.getUint8(i);
+                        hexstr += '0123456789abcdef'[(b & 0xf0) >> 4];
+                        hexstr += '0123456789abcdef'[(b & 0x0f)];
+                    }
+                    json.hash = hexstr;
+                    console.log(JSON.stringify(json));
+
+                    var xhr2 = new XMLHttpRequest();
+                    xhr2.open("POST", 'http://localhost:8080/api/transaction/push', true);
+                    xhr2.setRequestHeader('Content-Type', 'application/json');
+                    xhr2.setRequestHeader('Access-Control-Allow-Origin', '*');
+                    let bod = JSON.stringify(json);
+                    xhr2.send(bod);
+                    console.log(JSON.stringify(json));
+                })
+                .catch(function(err) {
+                    console.error(err);
+                });
+
             setError(null)
         } else {
             setAddressInputValue('')
@@ -122,15 +164,15 @@ export function Send(props) {
                     <input onChange={onChangeHandlerAddress} className={s.inputStyle}/>
                 </div>
                 <div className={st.divMaxAmountAndFeeContainer}>
+                    <div className={st.divAmountAndFeeText}>Amount (Sugar):</div>
+                    <input value={isPrintbalance ? props.balanceValue : amountInputValue} onChange={onChangeHandlerAmount} type="text" className={`${s.inputStyle}`}/>
                     <button
                         onClick={maxButtonClick}
                         className={s.buttonStyle}
                     >Max</button>
-                    <div className={st.divAmountAndFeeText}>Amount (TFC):</div>
-                    <input value={isPrintbalance ? props.balanceValue : amountInputValue} onChange={onChangeHandlerAmount} type="text" className={`${s.inputStyle}`}/>
                 </div>
                 <div className={st.divAmountAndFeeText}>
-                    Fee:
+                    Fee to miner (sugar):
                     <div>
                         <input onChange={onChangeHandlerFee} type="text" className={`${s.inputStyle} ${st.inputFee}`}/>
                     </div>
