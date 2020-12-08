@@ -17,22 +17,11 @@ function App() {
     let [walletPassword, setWalletPassword] = useState('')
     let [walletGeneratedPassword, setWalletGeneratedPassword] = useState('')
     let [balanceValue, setBalanceValue] = useState(0)
+    let [solve, setSolve] = useState('')
 
-    let [histoty, setHistory] = useState([
-        {sender: 'test1', amount: 'test2', recievier: 'test3', status: 'test4'},
-        {sender: 'test1', amount: 'test2', recievier: 'test3', status: 'test4'},
-        {sender: 'test1', amount: 'test2', recievier: 'test3', status: 'test4'},
-        {sender: 'test1', amount: 'test2', recievier: 'test3', status: 'test4'},
-        {sender: 'test1', amount: 'test2', recievier: 'test3', status: 'test4'}
-    ])
+    let [history, setHistory] = useState([])
 
-    let [send, setSend] = useState([
-        {recievier: 'test1', amount: 'test2', status: 'test3'},
-        {recievier: 'test1', amount: 'test2', status: 'test3'},
-        {recievier: 'test1', amount: 'test2', status: 'test3'},
-        {recievier: 'test1', amount: 'test2', status: 'test3'},
-        {recievier: 'test1', amount: 'test2', status: 'test3'}
-    ])
+    let [send, setSend] = useState([])
 
     function generateButtonClick() {
         const EC = require('elliptic').ec;
@@ -81,6 +70,10 @@ function App() {
                 <Route path='/tetris' render={() =>
                     <Tetris goalValue={goalValue}
                             authorized={authorized}
+                            setSolve={setSolve}
+                            solve={solve}
+                            walletName={walletName}
+                            setBalanceValue ={setBalanceValue}
                     />
                 }/>
                 <Route path='/generate-wallet' render={() =>
@@ -105,12 +98,16 @@ function App() {
                     <Send
                         authorized={authorized}
                         send={send}
+                        setSend={setSend}
+                        walletName={walletName}
                     />}
                 />
                 <Route path='/history' render={() =>
                     <History
                         authorized={authorized}
-                        histoty={histoty}
+                        walletName={walletName}
+                        history={history}
+                        setHistory={setHistory}
                     />
                 }/>
             </div>

@@ -2,19 +2,43 @@ import React from 'react';
 import s from "./styles/OtherElements.module.css";
 import st from "./styles/History.module.css";
 import Redirect from "react-router-dom/es/Redirect";
+import {useInterval} from "../hooks/useInterval";
 
 export function History(props) {
 
     function makeColumns(row) {
-        return(<> <td>{row.sender}</td> <td>{row.amount}</td> <td>{row.recievier}</td> <td>{row.status}</td> </>)
+        return(<><td>{row.sender}</td><td>{row.amount}</td><td>{row.receiver}</td><td>{row.status}</td></>)
     }
 
-    let tableTemplate = props.histoty.map((row, i) => {
+    function httpGet()
+    {
+        console.log("httGet");
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", 'http://localhost:8080/api//transaction/user?address=' + props.walletName, false ); // false for synchronous request
+        xmlHttp.send( null );
+        let json = JSON.parse(xmlHttp.responseText);
+        let result = []
+        for(var i = 0; i < json.length; i++) {
+            var obj = json[i];
+            result.push({sender: obj.sender, amount: obj.amount, receiver: obj.receiver, status: obj.block=="0"?"Pending":"Included in block "+obj.block});
+            console.log(obj.amount);
+        }
+        console.log(json);
+        props.setHistory(result);
+        console.log("buff!");
+        return 0;
+    }
+
+    useInterval(() => {
+        httpGet();
+    }, 1000);
+
+    let tableTemplate = props.history.map((row, i) => {
         return <tr key={i}>{makeColumns(row)}</tr>
     })
 
     if (!props.authorized) return <Redirect to={'/generate-wallet'}/>
-    else
+    else{
     return (
         <div>
             <div className={`${s.descriptionTextStyle} ${st.divContentWrapper}`}>
@@ -26,25 +50,15 @@ export function History(props) {
                     <tr>
                         <th className={s.thStyle}>Sender</th>
                         <th className={s.thStyle}>Amount (TFC)</th>
-                        <th className={s.thStyle}>Recievier</th>
+                        <th className={s.thStyle}>Receiver</th>
                         <th className={s.thStyle}>Status</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {tableTemplate}
-                    {/*<tr>*/}
-                    {/*    <td>ewew</td>*/}
-                    {/*    <td>ewew</td>*/}
-                    {/*    <td>ewew</td>*/}
-                    {/*</tr>*/}
-                    {/*<tr>*/}
-                    {/*    <td>ewew</td>*/}
-                    {/*    <td>ewew</td>*/}
-                    {/*    <td>ewew</td>*/}
-                    {/*</tr>*/}
+                        {tableTemplate}
                     </tbody>
                 </table>
             </div>
         </div>
-    )
+    )}
 }

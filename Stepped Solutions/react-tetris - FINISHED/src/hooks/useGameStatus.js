@@ -21,8 +21,7 @@ export const useGameStatus = rowsCleared => {
     calcScore();
   }, [calcScore, rowsCleared, score]);
 
-  if (score > 0)
-    console.log(score);
+
 
   return [score, setScore, goal, setGoal, rows, setRows, level, setLevel];
 };

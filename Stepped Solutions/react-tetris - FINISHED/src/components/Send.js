@@ -2,11 +2,35 @@ import React from 'react';
 import st from "./styles/Send.module.css";
 import s from "./styles/OtherElements.module.css";
 import Redirect from "react-router-dom/es/Redirect";
+import {useInterval} from "../hooks/useInterval";
 
 export function Send(props) {
 
+    function httpGet()
+    {
+        console.log("httGet");
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", 'http://localhost:8080/api//transaction/user?address=' + props.walletName, false ); // false for synchronous request
+        xmlHttp.send( null );
+        let json = JSON.parse(xmlHttp.responseText);
+        let result = []
+        for(var i = 0; i < json.length; i++) {
+            var obj = json[i];
+            if (obj.sender == props.walletName)
+            result.push({amount: obj.amount, receiver: obj.receiver, status: obj.block=="0"?"Pending":"Included in block "+obj.block});
+        }
+        console.log(json);
+        props.setSend(result);
+        console.log("buff!");
+        return 0;
+    }
+
+    useInterval(() => {
+        httpGet();
+    }, 1000);
+
     function makeColumns(row) {
-        return(<> <td>{row.recievier}</td> <td>{row.amount}</td> <td>{row.status}</td> </>)
+        return(<> <td>{row.receiver}</td> <td>{row.amount}</td> <td>{row.status}</td> </>)
     }
 
     let tableTemplate = props.send.map((row, i) => {

@@ -42,10 +42,12 @@ const Tetris = (props) => {
     }
   };
 
+
   const startGame = () => {
     // Reset everything
     setStage(createStage());
     setDropTime(1000);
+    props.setSolve('');
     resetPlayer();
       /*var xhr = new XMLHttpRequest()
       xhr.addEventListener('load', () => {
@@ -68,6 +70,57 @@ const Tetris = (props) => {
     xhr.send()
   }
 
+  function createNewBlock(){
+    var xhr = new XMLHttpRequest()
+         xhr.addEventListener('load', () => {
+           var json = JSON.parse(xhr.responseText);
+           //json.solution = props.solve;
+           let jsonString = JSON.stringify(json);
+           let hexstr = '';
+           const input = new TextEncoder('utf-8').encode(jsonString);
+           console.log(input);
+           crypto.subtle.digest('SHA-256', input)
+               .then(function(digest) {
+                 let view = new DataView(digest);
+                 let hexstr = '';
+                 for(let i = 0; i < view.byteLength; i++) {
+                   let b = view.getUint8(i);
+                   hexstr += '0123456789abcdef'[(b & 0xf0) >> 4];
+                   hexstr += '0123456789abcdef'[(b & 0x0f)];
+                 }
+                 console.log(hexstr);
+
+                 json.blockHeader.hash = hexstr;
+                 console.log(JSON.stringify(json));
+
+                 var xhr2 = new XMLHttpRequest();
+                 xhr2.open("POST", 'http://localhost:8080/api/block/push', true);
+                 xhr2.setRequestHeader('Content-Type', 'application/json');
+                 xhr2.setRequestHeader('Access-Control-Allow-Origin', '*');
+                 let bod = JSON.stringify(json);
+                 xhr2.send(bod);
+                 console.log(JSON.stringify(json));
+
+                 xhr2 = new XMLHttpRequest()
+                 xhr2.addEventListener('load', () => {
+                   props.setBalanceValue(xhr2.responseText);
+                   console.log(xhr2.responseText);
+                 })
+                 let request = 'http://localhost:8080/api/balance?address='+props.walletName;
+                 xhr2.open('GET', request);
+                 xhr2.send();
+
+
+               })
+               .catch(function(err) {
+                 console.error(err);
+               });
+           console.log(json);
+         })
+         xhr.open('GET', 'http://localhost:8080/api/block/prepared?miner=' + props.walletName);
+         xhr.send()
+  }
+
   const drop = () => {
     // Increase level when player has cleared 10 rows
     if (!checkCollision(player, stage, { x: 0, y: 1 })) {
@@ -76,15 +129,19 @@ const Tetris = (props) => {
       // Game over!
       if (player.pos.y < 1) {
         console.log('GAME OVER!!!');
+        if (score <= parseInt(goal))
+          createNewBlock(props.solve);
+        console.log(score >= parseInt(goal));
+        console.log(parseInt(goal));
+
         setGameOver(true);
         setDropTime(null);
+      }else {
+        const tetrominos = 'IJLOSTZ';
+        props.setSolve(props.solve + (" " + (player.pos.x + 1).toString() + " " + player.pos.y.toString() + " " + player.rot.toString() + " " + tetrominos[Math.floor(Math.random() * tetrominos.length)]));
+        console.log(props.solve);
+        updatePlayerPos({x: 0, y: 0, collided: true});
       }
-      //////////////////////////////
-      console.log(player.pos.x);
-      console.log(player.pos.y);
-      console.log(player.rot);
-      //////////////////////////////
-      updatePlayerPos({ x: 0, y: 0, collided: true });
     }
   };
 
