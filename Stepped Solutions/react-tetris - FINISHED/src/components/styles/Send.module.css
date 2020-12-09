@@ -10,6 +10,16 @@
     padding: 10px 35px;
 }
 
+.divAddressInputStyle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.inputAddressStyle {
+    margin-left: 127px;
+}
+
 .divMaxAmountAndFeeContainer {
     display: flex;
 }
@@ -20,14 +30,40 @@
     color: black;
     font-family: Impact, Arial, Helvetica, sans-serif;
     font-size: 1.5rem;
-    margin: 0 5px;
+}
+
+.amountInputStyle {
+    width: 20.75vw;
+    margin-left: 55px;
+    margin-right: 10px;
 }
 
 .inputFee {
-    margin: 10px;
-    width: 20.25vw;
+    margin-left: 10px;
+    margin-right: 15px;
+    width: 20.75vw;
 }
 
-.divInputPassword {
-    margin: 10px 0px;
+.divPasswordStyle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.inputPasswordStyle {
+    margin-left: 110px;
+}
+
+.divSendButtonStyle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sendButtonStyle {
+    height: 44px;
+    width: 14vw;
+    margin-left: 15px;
+    margin-top: 5px;
+    padding: 0;
 }

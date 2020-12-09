@@ -11,7 +11,7 @@ import {History} from "./components/History";
 function App() {
     const [authorized, setAuthorized] = useState(false)
     const [goalValue, setGoalValue] = useState(0)
-    // -------------------------------------------------------------------------------------
+
     let [walletName, setWalletName] = useState('')
     let [walletGeneratedName, setWalletGeneratedName] = useState('')
     let [walletPassword, setWalletPassword] = useState('')
@@ -115,7 +115,6 @@ function App() {
                         setSendPasswordValue={setSendPasswordValue}
                         confirmationHours={confirmationHours}
                         setConfirmationHours={setConfirmationHours}
-                        //-----------------------------------------
                         balanceValue={balanceValue}
                         setBalanceValue={setBalanceValue}
 

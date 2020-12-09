@@ -20,7 +20,7 @@
 }
 
 .inputStyle {
-    width: 30vw;
+    width: 35vw;
     height: 3vh;
     color: #333;
     background-color: #d4d4d4;
@@ -72,4 +72,11 @@
 .thStyle {
     width: 100vw;
     font-size: 18px;
+}
+
+.errorTextStyle {
+    color: #CF000E;
+    font-family: Impact, Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+    margin-top: 10px;
 }

@@ -50,7 +50,7 @@ export function LoadWallet(props) {
             //props.setWalletName("1");
             props.setAuthorized(true)
         } else {
-            setError('Password cannot be empty')
+            setError('Password cannot be empty!')
         }
     }
 
@@ -77,7 +77,7 @@ export function LoadWallet(props) {
                     className={s.buttonStyle}>
                     Load
                 </button>
-                {error}
+                <div className={s.errorTextStyle}>{error}</div>
             </div>
         </div>
     )

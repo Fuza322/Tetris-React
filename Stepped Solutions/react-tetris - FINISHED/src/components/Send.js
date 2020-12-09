@@ -6,7 +6,7 @@ import {useInterval} from "../hooks/useInterval";
 
 export function Send(props) {
 
-     function httpGet()
+    function httpGet()
      {
          console.log("httGet");
          let xmlHttp = new XMLHttpRequest();
@@ -158,17 +158,17 @@ export function Send(props) {
             </div>
             <hr/>
             <div className={st.divInputForm}>
-                <div>
-                    <p className={s.mainTextStyle}>Select coins you want to spend.</p>
+                <p className={s.mainTextStyle}>Select coins you want to spend.</p>
+                <div className={st.divAddressInputStyle}>
                     <p className={s.paragraphTextStyle}>Address:</p>
-                    <input onChange={onChangeHandlerAddress} className={s.inputStyle}/>
+                    <input onChange={onChangeHandlerAddress} className={`${s.inputStyle} ${st.inputAddressStyle}`}/>
                 </div>
                 <div className={st.divMaxAmountAndFeeContainer}>
                     <div className={st.divAmountAndFeeText}>Amount (Sugar):</div>
-                    <input value={isPrintbalance ? props.balanceValue : amountInputValue} onChange={onChangeHandlerAmount} type="text" className={`${s.inputStyle}`}/>
+                    <input value={isPrintbalance ? props.balanceValue : amountInputValue} onChange={onChangeHandlerAmount} type="text" className={`${s.inputStyle} ${st.amountInputStyle}`}/>
                     <button
                         onClick={maxButtonClick}
-                        className={s.buttonStyle}
+                        className={`${s.buttonStyle}`}
                     >Max</button>
                 </div>
                 <div className={st.divAmountAndFeeText}>
@@ -180,12 +180,16 @@ export function Send(props) {
                         Confirmation Expected In: {props.confirmationHours} hours
                     </div>
                 </div>
-                <div className={st.divInputPassword}>
-                    <p className={s.paragraphTextStyle}>Password:</p>
-                    <input onChange={onChangeHandlerSendPassword} type='password' className={s.inputStyle}/>
-                    <button onClick={sendButtonClick} className={s.buttonStyle}>Send Transaсtion</button>
+                <div>
+                    <div className={st.divPasswordStyle}>
+                        <p className={s.paragraphTextStyle}>Password:</p>
+                        <input onChange={onChangeHandlerSendPassword} type='password' className={`${s.inputStyle} ${st.inputPasswordStyle}`}/>
+                        <div className={st.divSendButtonStyle}>
+                            <button onClick={sendButtonClick} className={`${s.buttonStyle} ${st.sendButtonStyle}`}>Send Transaсtion</button>
+                        </div>
+                    </div>
                 </div>
-                {error}
+                <div className={s.errorTextStyle}>{error}</div>
             </div>
         </div>
     )
