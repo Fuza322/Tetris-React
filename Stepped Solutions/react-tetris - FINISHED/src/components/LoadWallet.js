@@ -34,7 +34,7 @@ export function LoadWallet(props) {
                     }
                     props.setWalletName(hexstr);
 
-                    var xhr2 = new XMLHttpRequest()
+                    let xhr2 = new XMLHttpRequest()
                     xhr2.addEventListener('load', () => {
                         props.setBalanceValue(xhr2.responseText);
                         console.log(xhr2.responseText);

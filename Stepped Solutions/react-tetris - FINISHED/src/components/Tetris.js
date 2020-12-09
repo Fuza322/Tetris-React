@@ -57,7 +57,7 @@ const Tetris = (props) => {
     setDropTime(1000);
     props.setSolve('');
     resetPlayer();
-      /*var xhr = new XMLHttpRequest()
+      /*let xhr = new XMLHttpRequest()
       xhr.addEventListener('load', () => {
         setScore(JSON.parse(xhr.responseText)["fee"])
       })
@@ -70,7 +70,7 @@ const Tetris = (props) => {
   };
 
   const downGoal = () => {
-    var xhr = new XMLHttpRequest()
+    let xhr = new XMLHttpRequest()
     xhr.addEventListener('load', () => {
       setGoal(xhr.responseText);
     })
@@ -79,9 +79,9 @@ const Tetris = (props) => {
   }
 
   function createNewBlock(){
-    var xhr = new XMLHttpRequest()
+    let xhr = new XMLHttpRequest()
          xhr.addEventListener('load', () => {
-           var json = JSON.parse(xhr.responseText);
+           let json = JSON.parse(xhr.responseText);
            //json.solution = props.solve;
            let jsonString = JSON.stringify(json);
            let hexstr = '';
@@ -101,7 +101,7 @@ const Tetris = (props) => {
                  json.blockHeader.hash = hexstr;
                  console.log(JSON.stringify(json));
 
-                 var xhr2 = new XMLHttpRequest();
+                 let xhr2 = new XMLHttpRequest();
                  xhr2.open("POST", 'http://localhost:8080/api/block/push', true);
                  xhr2.setRequestHeader('Content-Type', 'application/json');
                  xhr2.setRequestHeader('Access-Control-Allow-Origin', '*');

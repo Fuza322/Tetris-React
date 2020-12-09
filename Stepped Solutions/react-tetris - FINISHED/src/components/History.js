@@ -13,13 +13,13 @@ export function History(props) {
     function httpGet()
     {
         console.log("httGet");
-        var xmlHttp = new XMLHttpRequest();
+        let xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET", 'http://localhost:8080/api//transaction/user?address=' + props.walletName, false ); // false for synchronous request
         xmlHttp.send( null );
         let json = JSON.parse(xmlHttp.responseText);
         let result = []
-        for(var i = 0; i < json.length; i++) {
-            var obj = json[i];
+        for(let i = 0; i < json.length; i++) {
+            let obj = json[i];
             result.push({sender: obj.sender, amount: obj.amount, receiver: obj.receiver, status: obj.block=="0"?"Pending":"Included in block "+obj.block});
             console.log(obj.amount);
         }

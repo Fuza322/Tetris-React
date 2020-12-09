@@ -24,6 +24,11 @@
     display: flex;
 }
 
+.maxButtonStyle {
+    height: 45px;
+    width: 13.1vw;
+}
+
 .divAmountAndFeeText {
     display: flex;
     align-items: center;

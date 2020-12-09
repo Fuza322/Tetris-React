@@ -101,7 +101,7 @@ export function Send(props) {
                     json.hash = hexstr;
                     console.log(JSON.stringify(json));
 
-                    var xhr2 = new XMLHttpRequest();
+                    let xhr2 = new XMLHttpRequest();
                     xhr2.open("POST", 'http://localhost:8080/api/transaction/push', true);
                     xhr2.setRequestHeader('Content-Type', 'application/json');
                     xhr2.setRequestHeader('Access-Control-Allow-Origin', '*');
@@ -168,7 +168,7 @@ export function Send(props) {
                     <input value={isPrintbalance ? props.balanceValue : amountInputValue} onChange={onChangeHandlerAmount} type="text" className={`${s.inputStyle} ${st.amountInputStyle}`}/>
                     <button
                         onClick={maxButtonClick}
-                        className={`${s.buttonStyle}`}
+                        className={`${s.buttonStyle} ${st.maxButtonStyle}`}
                     >Max</button>
                 </div>
                 <div className={st.divAmountAndFeeText}>
